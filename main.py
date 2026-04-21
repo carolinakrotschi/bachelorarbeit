@@ -16,6 +16,7 @@ except Exception as e:  # If import fails
 
 import pandas as pd  # Data analysis and CSV export
 import matplotlib.pyplot as plt  # Plot graphs and images
+import numpy as np  # Numerical computing
 import customtkinter as ctk  # Modern GUI framework
 import serial  # Serial communication with translation stages
 import threading  # Run hardware tasks without freezing UI
@@ -124,29 +125,53 @@ class InterferometerApp(ctk.CTk):  # Main application class
         """Reads the camera in a loop and updates the UI in real-time."""
         try:  # Monitor loop
             fringe_count = 0  # Counter for fringe transitions
-            last_state = None  # Previous intensity state
-            threshold = 127  # Intensity threshold (0-255)
+            intensity_history = []  # Store recent intensity values
+            history_size = 5  # Number of values to track for peak detection
+            min_change = 50  # Minimum intensity change to count as a fringe
             
             while self.is_monitoring:  # Continuous monitoring
                 intensity = self.camera_handler.get_fringe_intensity()  # Get camera intensity
                 print("monitor loop running", intensity)  # Debug output
                 
                 if intensity is not None:  # Valid reading
-                    current_state = intensity > threshold  # Compare to threshold
-                    if last_state is not None and current_state != last_state:  # State change detected
-                        if current_state is True:  # Fringe crossing (dark to bright)
-                            fringe_count += 1  # Increment counter
+                    intensity_history.append(intensity)  # Store value
+                    if len(intensity_history) > history_size:  # Keep buffer size
+                        intensity_history.pop(0)  # Remove oldest value
+                    
+                    # Detect peaks and valleys (local extrema)
+                    if len(intensity_history) >= 3:  # Need at least 3 points
+                        # Check if middle point is a peak or valley
+                        mid_idx = len(intensity_history) // 2
+                        if mid_idx >= 1 and mid_idx < len(intensity_history) - 1:
+                            prev = intensity_history[mid_idx - 1]
+                            curr = intensity_history[mid_idx]
+                            next_val = intensity_history[mid_idx + 1]
                             
-                            # CALCULATIONS
-                            dist_mm = fringe_count * FRINGE_DISTANCE_MM  # Distance per fringe
-                            dist_um = dist_mm * 1000  # Convert to micrometers
-                            # Optical path = 2*distance, Time = distance/speed
-                            time_ps = (2 * dist_mm) / SPEED_OF_LIGHT_MM_PS  # Calculate time delay
+                            # Peak: current > neighbors
+                            is_peak = curr > prev and curr > next_val
+                            # Valley: current < neighbors
+                            is_valley = curr < prev and curr < next_val
                             
-                            # Update UI
-                            self.after(0, lambda d=dist_mm, u=dist_um, t=time_ps: self.update_display(d, u, t))  # Thread-safe UI update
+                            # Check magnitude of change
+                            max_neighbor = max(abs(curr - prev), abs(curr - next_val))
+                            significant_change = max_neighbor > min_change
                             
-                    last_state = current_state  # Store current state
+                            # Count transition when significant peak or valley detected
+                            if (is_peak or is_valley) and significant_change:
+                                # Use a simple flag to avoid double-counting
+                                if len(intensity_history) == history_size:  # Only when buffer is full
+                                    fringe_count += 1  # Increment counter
+                                    
+                                    # CALCULATIONS
+                                    dist_mm = fringe_count * FRINGE_DISTANCE_MM  # Distance per fringe
+                                    dist_um = dist_mm * 1000  # Convert to micrometers
+                                    # Optical path = 2*distance, Time = distance/speed
+                                    time_ps = (2 * dist_mm) / SPEED_OF_LIGHT_MM_PS  # Calculate time delay
+                                    
+                                    # Update UI
+                                    self.after(0, lambda d=dist_mm, u=dist_um, t=time_ps: self.update_display(d, u, t))  # Thread-safe UI update
+                                    print(f"Fringe {fringe_count} detected! Distance: {dist_mm:.6f} mm")  # Debug output
+                
                 time.sleep(0.05)  # Polling interval (reduce frequency to match camera rate)
                 
         except Exception as e:  # Error handling
