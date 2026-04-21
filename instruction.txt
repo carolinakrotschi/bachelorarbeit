@@ -1,0 +1,6 @@
+# code instructions (python has to already be installed)
+#in terminal: source .venv/bin/activate
+#in terminal: pip install -r requirements.txt
+# cmd shift p: choose venv as interpreter
+#run file with the venv
+# for camera, go to: https://www.thorlabs.com/software-pages/thorcam/ and install the 64 bit software and the python interface
