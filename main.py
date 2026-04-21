@@ -147,7 +147,7 @@ class InterferometerApp(ctk.CTk):  # Main application class
                             self.after(0, lambda d=dist_mm, u=dist_um, t=time_ps: self.update_display(d, u, t))  # Thread-safe UI update
                             
                     last_state = current_state  # Store current state
-                time.sleep(0.0005)  # High-speed polling interval
+                time.sleep(0.05)  # Polling interval (reduce frequency to match camera rate)
                 
         except Exception as e:  # Error handling
             self.after(0, lambda err=e: self.status_label.configure(text=f"Error: {err}", text_color="red"))  # Show error

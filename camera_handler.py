@@ -27,7 +27,7 @@ class CameraHandler:  # Camera management class
             devices = self.sdk.discover_available_cameras()  # Find available cameras
             if len(devices) > 0:  # If cameras found
                 self.camera = self.sdk.open_camera(devices[0])  # Open first camera
-                self.camera.arm()  # Prepare camera for capture
+                self.camera.arm(frames_to_buffer=10)  # Prepare camera for capture
                 self.is_connected = True  # Mark as connected
                 return True  # Connection successful
         except Exception as e:  # Connection attempt failed
@@ -47,9 +47,13 @@ class CameraHandler:  # Camera management class
                 
         # Real hardware logic
         if self.camera:  # Camera connected
-            frame = self.camera.get_pending_frame_or_null()  # Get latest frame
-            if frame is not None:  # Frame available
-                img = frame.image_buffer  # Extract image data
-                h, w = img.shape  # Get image dimensions
-                return np.mean(img[h//2-10:h//2+10, w//2-10:w//2+10])  # Return center region average
+            self.camera.issue_software_trigger()  # Trigger camera to capture frame
+            for _ in range(10):  # Wait up to 10 attempts for frame
+                frame = self.camera.get_pending_frame_or_null()  # Get latest frame
+                if frame is not None:  # Frame available
+                    img = frame.image_buffer  # Extract image data
+                    h, w = img.shape  # Get image dimensions
+                    return np.mean(img[h//2-10:h//2+10, w//2-10:w//2+10])  # Return center region average
+                import time
+                time.sleep(0.001)  # Short wait before retry
         return None  # No valid data
