@@ -125,9 +125,9 @@ class InterferometerApp(ctk.CTk):  # Main application class
         """Reads the camera in a loop and updates the UI in real-time."""
         try:  # Monitor loop
             fringe_count = 0  # Counter for fringe transitions
-            intensity_history = []  # Store recent intensity values
-            history_size = 5  # Number of values to track for peak detection
-            min_change = 50  # Minimum intensity change to count as a fringe
+            intensity_history = []  # Store recent intensity values for smoothing
+            history_size = 10  # Smoothing window size
+            last_derivative = None  # Store last derivative to detect peak
             
             while self.is_monitoring:  # Continuous monitoring
                 intensity = self.camera_handler.get_fringe_intensity()  # Get camera intensity
@@ -138,28 +138,17 @@ class InterferometerApp(ctk.CTk):  # Main application class
                     if len(intensity_history) > history_size:  # Keep buffer size
                         intensity_history.pop(0)  # Remove oldest value
                     
-                    # Detect peaks and valleys (local extrema)
-                    if len(intensity_history) >= 3:  # Need at least 3 points
-                        # Check if middle point is a peak or valley
-                        mid_idx = len(intensity_history) // 2
-                        if mid_idx >= 1 and mid_idx < len(intensity_history) - 1:
-                            prev = intensity_history[mid_idx - 1]
-                            curr = intensity_history[mid_idx]
-                            next_val = intensity_history[mid_idx + 1]
+                    # Smooth the signal using moving average
+                    if len(intensity_history) == history_size:  # Buffer full
+                        smoothed_intensity = np.mean(intensity_history)  # Calculate average
+                        
+                        # Peak detection: calculate derivative (rate of change)
+                        if len(intensity_history) >= 2:
+                            current_derivative = intensity_history[-1] - intensity_history[-2]  # Simple derivative
                             
-                            # Peak: current > neighbors
-                            is_peak = curr > prev and curr > next_val
-                            # Valley: current < neighbors
-                            is_valley = curr < prev and curr < next_val
-                            
-                            # Check magnitude of change
-                            max_neighbor = max(abs(curr - prev), abs(curr - next_val))
-                            significant_change = max_neighbor > min_change
-                            
-                            # Count transition when significant peak or valley detected
-                            if (is_peak or is_valley) and significant_change:
-                                # Use a simple flag to avoid double-counting
-                                if len(intensity_history) == history_size:  # Only when buffer is full
+                            # Detect peaks: derivative changes from positive to negative
+                            if last_derivative is not None:
+                                if last_derivative > 0 and current_derivative <= 0:  # Peak detected
                                     fringe_count += 1  # Increment counter
                                     
                                     # CALCULATIONS
@@ -170,8 +159,8 @@ class InterferometerApp(ctk.CTk):  # Main application class
                                     
                                     # Update UI
                                     self.after(0, lambda d=dist_mm, u=dist_um, t=time_ps: self.update_display(d, u, t))  # Thread-safe UI update
-                                    print(f"Fringe {fringe_count} detected! Distance: {dist_mm:.6f} mm")  # Debug output
-                
+                            
+                            last_derivative = current_derivative  # Store for next iteration
                 time.sleep(0.05)  # Polling interval (reduce frequency to match camera rate)
                 
         except Exception as e:  # Error handling
