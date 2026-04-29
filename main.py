@@ -126,42 +126,54 @@ class InterferometerApp(ctk.CTk):  # Main application class
         try:  # Monitor loop
             fringe_count = 0  # Counter for fringe transitions
             intensity_history = []  # Store recent intensity values for smoothing
-            history_size = 10  # Smoothing window size
-            last_derivative = None  # Store last derivative to detect peak
+            history_size = 100  # Smoothing window size
+            last_derivative = -1  # Store last derivative to detect peak
+
+            while self.is_monitoring:
+                intensity = self.camera_handler.get_fringe_intensity()
             
-            while self.is_monitoring:  # Continuous monitoring
-                intensity = self.camera_handler.get_fringe_intensity()  # Get camera intensity
-                print("monitor loop running", intensity)  # Debug output
-                
-                if intensity is not None:  # Valid reading
-                    intensity_history.append(intensity)  # Store value
-                    if len(intensity_history) > history_size:  # Keep buffer size
-                        intensity_history.pop(0)  # Remove oldest value
-                    
-                    # Smooth the signal using moving average
-                    if len(intensity_history) == history_size:  # Buffer full
-                        smoothed_intensity = np.mean(intensity_history)  # Calculate average
-                        
-                        # Peak detection: calculate derivative (rate of change)
-                        if len(intensity_history) >= 2:
-                            current_derivative = intensity_history[-1] - intensity_history[-2]  # Simple derivative
-                            
-                            # Detect peaks: derivative changes from positive to negative
-                            if last_derivative is not None:
-                                if last_derivative > 0 and current_derivative <= 0:  # Peak detected
-                                    fringe_count += 1  # Increment counter
-                                    
-                                    # CALCULATIONS
-                                    dist_mm = fringe_count * FRINGE_DISTANCE_MM  # Distance per fringe
-                                    dist_um = dist_mm * 1000  # Convert to micrometers
-                                    # Optical path = 2*distance, Time = distance/speed
-                                    time_ps = (2 * dist_mm) / SPEED_OF_LIGHT_MM_PS  # Calculate time delay
-                                    
-                                    # Update UI
-                                    self.after(0, lambda d=dist_mm, u=dist_um, t=time_ps: self.update_display(d, u, t))  # Thread-safe UI update
-                            
-                            last_derivative = current_derivative  # Store for next iteration
-                time.sleep(0.05)  # Polling interval (reduce frequency to match camera rate)
+                if intensity is not None:
+                    intensity_history.append(intensity)
+            
+                    if len(intensity_history) > history_size:
+                        intensity_history.pop(0)
+            
+                    if len(intensity_history) >= history_size:
+                        signal = np.array(intensity_history)
+            
+                        # Moving average smoothing
+                        window = 5
+                        smoothed = np.convolve(signal, np.ones(window) / window, mode="valid")
+            
+                        mean_intensity = np.mean(smoothed)
+                        std_intensity = np.std(smoothed)
+            
+                        threshold = mean_intensity + 0.5 * std_intensity
+            
+                        peaks, properties = find_peaks(
+                            smoothed,
+                            height=threshold,
+                            distance=8,
+                            prominence=0.3 * std_intensity
+                        )
+            
+                        if len(peaks) > 0:
+                            newest_peak = peaks[-1]
+            
+                            if newest_peak > last_counted_peak_index:
+                                fringe_count += 1
+                                last_counted_peak_index = newest_peak
+            
+                                dist_mm = fringe_count * FRINGE_DISTANCE_MM
+                                dist_um = dist_mm * 1000
+                                time_ps = (2 * dist_mm) / SPEED_OF_LIGHT_MM_PS
+            
+                                self.after(
+                                    0,
+                                    lambda d=dist_mm, u=dist_um, t=time_ps:
+                                    self.update_display(d, u, t)
+                                )
+                time.sleep(0.05) # Polling interval (reduce frequency to match camera rate)
                 
         except Exception as e:  # Error handling
             self.after(0, lambda err=e: self.status_label.configure(text=f"Error: {err}", text_color="red"))  # Show error
