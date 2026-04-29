@@ -27,6 +27,7 @@ from datetime import datetime  # Timestamp measurements
 from PIL import Image  # Image handling
 from pipython import GCSDevice, pitools  # PI stage controller libraries
 from camera_handler import CameraHandler  # Custom camera management class
+from scipy.signal import find_peaks  # Peak detection in signal processing
 
 # CONFIGURATION
 LASER_WAVELENGTH_NM = 632.8  # HeNe laser wavelength (nanometers)
@@ -127,10 +128,11 @@ class InterferometerApp(ctk.CTk):  # Main application class
             fringe_count = 0  # Counter for fringe transitions
             intensity_history = []  # Store recent intensity values for smoothing
             history_size = 100  # Smoothing window size
-            last_derivative = -1  # Store last derivative to detect peak
+            last_counted_peak_index = -1  # Store last counted peak index
 
             while self.is_monitoring:
                 intensity = self.camera_handler.get_fringe_intensity()
+                print(f"Current intensity: {intensity}")  # Debug: print current intensity
             
                 if intensity is not None:
                     intensity_history.append(intensity)
