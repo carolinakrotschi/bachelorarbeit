@@ -2,7 +2,7 @@
 \label{chap:software_analysis}
 \thispagestyle{empty}
 
-The selection of the laser source completed the optical design of the measurement system. The subsequent chapter focuses on the software developed to evaluate the interferometric signals.
+The subsequent chapter focuses on the software developed to evaluate the interferometric signals.
 The primary objective of the software was to provide an independent measurement of stage displacement based on interferometric fringe counting and directly comparing this value with the displacement reported by the translation stage controller. For this purpose, three software implementations were developed: one for camera-based fringe counting, one for photodiode-based fringe counting, and one for evaluating the quadrature homodyne interferometer.
 
 \section{Software for Fringe detection with the Camera}
@@ -287,9 +287,7 @@ Before evaluating the signal, every newly acquired voltage sample is smoothed us
 
 Initially, the algorithm waits until the signal reaches the dark region of an interference fringe. Once this condition is fulfilled, the signal is monitored until it rises by a predefined fraction of the calibrated fringe amplitude. When this threshold is exceeded for several consecutive samples, one fringe is counted.
 
-After a successful detection, a short cooldown period is applied before another fringe can be registered. This prevents multiple counts of the same fringe caused by small oscillations or electrical noise. Furthermore, requiring several consecutive samples in both the dark and bright states significantly reduces false detections.
-
-The control of the translation stage as well as distance calculation and all further calculations are identical to the Camera Software mentioned above.
+The control of the translation stage as well as distance calculation, cooldown period and all further calculations are identical to the Camera Software mentioned above.
 
 Finally, the software provides the possibility to record all measured data. The recorded dataset contains the relative measurement time, the raw voltage, the baseline-corrected voltage, the accumulated fringe count, the calculated optical distance and the current position of the translation stage. After the measurement, these data can be exported as a CSV file for further analysis. A visualization of the user interface is shown in Figure~\ref{fig:single_diode_software_gui}.
 
