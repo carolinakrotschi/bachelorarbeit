@@ -302,12 +302,12 @@ The two signals can be represented as coordinates in the $(S_1,S_2)$ plane (as s
 \Delta\phi=\operatorname{atan2}(S_2,S_1),
 \end{equation}
 
-which uniquely determines the phase over the full $2\pi$ range \prismcite{32}.
+which uniquely determines the phase over the full $2\pi$ range \prismcite{31}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figures/countinghomodyne.png}
-    \caption{Principle of direction-sensitive quadrature signal evaluation in homodyne interferometry. The phase relation between two quadrature signals enables the direction of motion to be determined. Obtained from \prismcite{32}.}
+    \caption{Principle of direction-sensitive quadrature signal evaluation in homodyne interferometry. The phase relation between two quadrature signals enables the direction of motion to be determined. Obtained from \prismcite{31}.}
     \label{fig:counting_homodyne}
 \end{figure}
 
@@ -333,9 +333,9 @@ The displacement is obtained from the measured phase according to
 d= \frac{\lambda}{4\pi}\Delta\phi,
 \end{equation}
 
-where \(d\) is the displacement of the moving mirror on the translation stage, \(\lambda\) is the laser wavelength, and \(\Delta\phi\) is the measured phase change \prismcite{33}.
+where \(d\) is the displacement of the moving mirror on the translation stage, \(\lambda\) is the laser wavelength, and \(\Delta\phi\) is the measured phase change \prismcite{32}.
 
-Since the phase can be tracked continuously, quadrature homodyne interferometry can measure displacements much smaller than the laser wavelength \prismcite{34}. It also provides information about the direction of movement, making it possible to track the position reliably over long distances. For these reasons, a quadrature homodyne interferometer was chosen as an extension for the displacement measurement system developed in this thesis.
+Since the phase can be tracked continuously, quadrature homodyne interferometry can measure displacements much smaller than the laser wavelength \prismcite{33}. It also provides information about the direction of movement, making it possible to track the position reliably over long distances. For these reasons, a quadrature homodyne interferometer was chosen as an extension for the displacement measurement system developed in this thesis.
 
 To realize the expanded capabilities of quadrature homodyne interferometry compared to a conventional Michelson interferometer, additional optical elements are required. Specifically, polarization-controlling components are essential for generating the quadrature signals. These components and their operating principles are introduced in the following.
 
@@ -346,7 +346,7 @@ Specifically, a $\lambda/2$ wave plate, a $\lambda/4$ wave plate, a Wollaston pr
 
 \paragraph{Half-Wave Plate}
 
-A half-wave plate is a special type of wave retarder. In general, a wave retarder is a birefringent optical element with two principal axes, usually referred to as the fast and slow axes. Because the refractive indices along these axes are different, the two orthogonal polarization components of a beam propagate with different phase velocities. As a result, a phase delay is introduced between the two components \prismcite{35}.
+A half-wave plate is a special type of wave retarder. In general, a wave retarder is a birefringent optical element with two principal axes, usually referred to as the fast and slow axes. Because the refractive indices along these axes are different, the two orthogonal polarization components of a beam propagate with different phase velocities. As a result, a phase delay is introduced between the two components \prismcite{34}.
 
 For a half-wave plate, this phase retardance is
 
@@ -354,7 +354,7 @@ For a half-wave plate, this phase retardance is
     \Gamma = \pi .
 \end{equation}
 
-This means that one polarization component is delayed by half an optical period with respect to the orthogonal component. For linearly polarized input light, the output remains linearly polarized, but the plane of polarization is rotated. If the incident polarization forms an angle \(\theta\) with one of the principal axes of the half-wave plate, the polarization direction after the plate is rotated by \(2\theta\) with respect to the incident direction \prismcite{36}.
+This means that one polarization component is delayed by half an optical period with respect to the orthogonal component. For linearly polarized input light, the output remains linearly polarized, but the plane of polarization is rotated. If the incident polarization forms an angle \(\theta\) with one of the principal axes of the half-wave plate, the polarization direction after the plate is rotated by \(2\theta\) with respect to the incident direction \prismcite{35}.
 
 In the quadrature homodyne interferometer, this property is used to adjust the polarization angle of the laser beam. By rotating the polarization to \(45^\circ\) with respect to the axes of a polarizing beam splitter, the optical power can be divided into two equal polarization components. 
 \paragraph{Quarter-Wave Plate}
@@ -364,35 +364,35 @@ A quarter-wave plate operates in the same way as a half-wave plate but introduce
 \Gamma=\frac{\pi}{2}.
 \end{equation}
 
-Consequently, one polarization component is delayed by one quarter of an optical period relative to the orthogonal component. If linearly polarized light is incident at an angle of \(45^\circ\) to the principal axes, the output becomes circularly polarized. Conversely, circularly polarized light is converted into linearly polarized light \prismcite{36}.
+Consequently, one polarization component is delayed by one quarter of an optical period relative to the orthogonal component. If linearly polarized light is incident at an angle of \(45^\circ\) to the principal axes, the output becomes circularly polarized. Conversely, circularly polarized light is converted into linearly polarized light \prismcite{35}.
 
 \paragraph{Wollaston Prism}
 
-A Wollaston prism, shown in Figure~\ref{fig:wollaston_prism}, is a polarization beam splitter that separates an incoming beam into two linearly polarized output beams. It consists of two birefringent wedge prisms, commonly made from a material such as calcite. Although a magnesium fluoride (\(\mathrm{MgF}_2\)) Wollaston prism was used in this work due to availability, this choice of material does not affect the operating principle. The two wedges are joined together with their optical axes oriented perpendicular to each other \prismcite{37}. Because birefringent materials exhibit different refractive indices for different polarization directions, the ordinary and extraordinary polarization components experience different refraction angles. The behavior, that different refractive indices are refracted differently originates from Snell's law,
+A Wollaston prism, shown in Figure~\ref{fig:wollaston_prism}, is a polarization beam splitter that separates an incoming beam into two linearly polarized output beams. It consists of two birefringent wedge prisms, commonly made from a material such as calcite. Although a magnesium fluoride (\(\mathrm{MgF}_2\)) Wollaston prism was used in this work due to availability, this choice of material does not affect the operating principle. The two wedges are joined together with their optical axes oriented perpendicular to each other \prismcite{36}. Because birefringent materials exhibit different refractive indices for different polarization directions, the ordinary and extraordinary polarization components experience different refraction angles. The behavior, that different refractive indices are refracted differently originates from Snell's law,
 \begin{equation}
     n_1 \sin\theta_1 = n_2 \sin\theta_2,
 \end{equation}
-where \(n_1\) and \(n_2\) are the refractive indices of the first and second medium, respectively, and \(\theta_1\) and \(\theta_2\) are the angles of incidence and refraction, measured with respect to the surface normal \prismcite{38}.
+where \(n_1\) and \(n_2\) are the refractive indices of the first and second medium, respectively, and \(\theta_1\) and \(\theta_2\) are the angles of incidence and refraction, measured with respect to the surface normal \prismcite{37}.
 
 In the first prism, one polarization component propagates as the ordinary ray while the orthogonal component propagates as the extraordinary ray. In the second prism, whose optical axis is rotated by \(90^\circ\), these roles are interchanged. As a result, the two polarization components are refracted in opposite directions at the internal interface and leave the prism as two spatially separated beams. The use of two prisms increases the angular separation and makes the two output beams easier to use experimentally.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figures/wollaston.png}
-    \caption{Schematic representation of a Wollaston prism. The two cemented birefringent prisms have perpendicular optical axes, causing orthogonally polarized components to be refracted in different directions. Obtained from \prismcite{37}.}
+    \caption{Schematic representation of a Wollaston prism. The two cemented birefringent prisms have perpendicular optical axes, causing orthogonally polarized components to be refracted in different directions. Obtained from \prismcite{36}.}
     \label{fig:wollaston_prism}
 \end{figure}
 
 \paragraph{Wire-Grid Polarizer}
 
-A wire-grid polarizer (shown in Figure~\ref{fig:wire_grid_polarizer}) consists of many parallel conducting wires. When light reaches the grid, its electric field can be decomposed into a component parallel to the wires and a component perpendicular to the wires \prismcite{39}. The electric field component parallel to the wires drives the free electrons in the metal along the wire direction. The resulting oscillating currents reradiate electromagnetic waves, leading mainly to reflection and absorption of this polarization component.
+A wire-grid polarizer (shown in Figure~\ref{fig:wire_grid_polarizer}) consists of many parallel conducting wires. When light reaches the grid, its electric field can be decomposed into a component parallel to the wires and a component perpendicular to the wires \prismcite{38}. The electric field component parallel to the wires drives the free electrons in the metal along the wire direction. The resulting oscillating currents reradiate electromagnetic waves, leading mainly to reflection and absorption of this polarization component.
 
 For the electric field component perpendicular to the wires, the electrons cannot move efficiently across the gaps between neighboring wires. Consequently, only a weak current is induced, and this polarization component is transmitted much more efficiently. The wire-grid polarizer therefore transmits light polarized perpendicular to the wires while suppressing the parallel component.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figures/wiregrid.png}
-    \caption{Principle of a wire-grid polarizer. The electric field component parallel to the conducting wires is mostly reflected or absorbed, while the perpendicular component is transmitted. Obtained from \prismcite{39}.}
+    \caption{Principle of a wire-grid polarizer. The electric field component parallel to the conducting wires is mostly reflected or absorbed, while the perpendicular component is transmitted. Obtained from \prismcite{38}.}
     \label{fig:wire_grid_polarizer}
 \end{figure}
 
@@ -469,7 +469,7 @@ A motorized precision translation stage is used in the interferometer setup to g
 
 \subsection{Operating Principle}
 
-Although the following description is based on the Physik Instrumente (PI) translation stage, the temporarily used Thorlabs stage operates according to the same fundamental principle: Linear motion is generated by converting the rotational motion of an electric motor into translational motion using a lead screw. The moving platform is guided by rolling-element linear bearings, which provide smooth motion with high stiffness and low friction. \prismcite{26,27}
+Although the following description is based on the Physik Instrumente (PI) translation stage, the temporarily used Thorlabs stage operates according to the same fundamental principle: Linear motion is generated by converting the rotational motion of an electric motor into translational motion using a lead screw. The moving platform is guided by rolling-element linear bearings, which provide smooth motion with high stiffness and low friction. \prismcite{26, 27}
 
 Although motorized translation stages provide highly repeatable and accurate positioning over long travel distances, their performance is inherently limited by both mechanical and environmental influences. These effects prevent the commanded position from exactly matching the actual position of the moving platform. The positioning accuracy is affected by mechanical tolerances, such as lead screw errors and bearing imperfections, as well as by thermal effects. Temperature variations cause thermal expansion of structural components, guide rails, and the drive mechanism, resulting in positioning errors, particularly over long travel distances. \prismcite{28}
 
