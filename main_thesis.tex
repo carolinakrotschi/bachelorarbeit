@@ -1,0 +1,116 @@
+\documentclass[12pt,a4paper]{book}
+
+%%% PREAMBLE
+\input{preamble_thesis}
+\addbibresource{sources/bachelorarbeit.bib}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%
+%%% FRONT MATTER %%%
+%%% ============ %%%
+
+\frontmatter
+\hypersetup{pageanchor=false}
+
+%%% FRONTPAGE
+\include{pages/frontpage}
+\thispagestyle{empty}
+
+%%% TITLEPAGE
+\include{pages/titlepage_de}
+\thispagestyle{empty}
+\include{pages/titlepage_en}
+\thispagestyle{empty}
+
+%%% SUPERVISORS
+\include{pages/supervisors}
+\thispagestyle{empty}
+
+%%% ACKNOWLEDGEMENT
+\include{pages/acknowledgement}
+\thispagestyle{empty}
+
+%%% NOTATION AND CONVENTIONS
+%\include{pages/notation-and-conventions}
+\thispagestyle{empty}
+
+%%% ABSTRACT
+\include{pages/abstract}
+\thispagestyle{empty}
+
+%%% TABLE OF CONTENT
+\pdfbookmark{\contentsname}{Contents}
+\tableofcontents
+\clearpage
+\thispagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%% MAIN MATTER %%%%
+%%% =========== %%%%
+
+\hypersetup{pageanchor=true}
+\mainmatter
+
+%%% INTRODUCTION
+\include{chapters/introduction}
+
+%%% CHAPTER 02
+\include{chapters/chapter-02}
+
+%%% CHAPTER 03
+\include{chapters/chapter-03}
+
+%%% CHAPTER 04
+\include{chapters/chapter-04}
+
+%%% CHAPTER 05
+\include{chapters/chapter-05}
+
+%%% CHAPTER 06
+\include{chapters/chapter-06}
+
+%%% CHAPTER 07
+%\include{chapters/chapter-07}
+
+
+%%% CONCLUSION
+\include{chapters/conclusion}
+
+
+%%% APPENDIX
+\include{appendix/appendix}
+
+
+%%%%%%%%%%%%%%%%%%%
+%%% BACK MATTER %%%
+%%% =========== %%%
+
+\backmatter
+
+%%% BIBLIOGRAPHY
+\chapter*{Bibliography}
+\phantomsection\addcontentsline{toc}{chapter}{Bibliography}
+\begingroup
+\renewcommand{\labelenumi}{[\theenumi]}
+\begin{enumerate}
+\input{sources/citation_instances.tex}
+\end{enumerate}
+\endgroup
+
+%%% LIST OF FIGURES
+% \listoffigures
+
+%%% LIST OF TABLES
+% \listoftables
+
+
+%%% DECLARATION OF AUTHORSHIP
+\include{pages/declaration-of-authorship_de}
+\thispagestyle{empty}
+\include{pages/declaration-of-authorship_en}
+\thispagestyle{empty}
+
+
+\end{document}
