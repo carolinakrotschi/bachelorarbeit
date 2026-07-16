@@ -73,7 +73,7 @@ The complete complex electric field amplitude of a Gaussian beam is then given b
 \exp\left[-ikz-ik\frac{\rho^2}{2R(z)}+i\zeta(z)\right],
 \end{equation}
 
-where \(A_0\) is the field amplitude at the beam waist, \(w_0\) is the beam waist radius, \(w(z)\) is the beam radius at the position \(z\), \(R(z)\) is the radius of curvature of the wavefront, and \(\zeta(z)\) is the Gouy phase shift \prismcite{7}.
+where \(A_0\) is the field amplitude at the beam waist, \(w_0\) is the beam waist radius, \(w(z)\) is the beam radius at the position \(z\), \(R(z)\) is the radius of curvature of the wavefront, and \(\zeta(z)\) is the Gouy phase shift \prismcite{9}.
 
 Having established the field distribution of a Gaussian beam, the next step is to examine the parameters that characterize its propagation. In particular, the beam waist and beam divergence provide a quantitative description of the beam size and its evolution along the propagation direction.
 
@@ -298,12 +298,12 @@ The two signals can be represented as coordinates in the $(S_1,S_2)$ plane (as s
 \Delta\varphi=\operatorname{atan2}(S_2,S_1),
 \end{equation}
 
-which uniquely determines the phase over the full $2\pi$ range \prismcite{31}.
+which uniquely determines the phase over the full $2\pi$ range \prismcite{39}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figures/countinghomodyne.png}
-    \caption{Principle of direction-sensitive quadrature signal evaluation in homodyne interferometry. The phase relation between two quadrature signals enables the direction of motion to be determined. Obtained from \prismcite{31}.}
+    \caption{Principle of direction-sensitive quadrature signal evaluation in homodyne interferometry. The phase relation between two quadrature signals enables the direction of motion to be determined. Obtained from \prismcite{39}.}
     \label{fig:counting_homodyne}
 \end{figure}
 
@@ -329,9 +329,9 @@ The displacement is obtained from the measured phase according to
 d= \frac{\lambda}{4\pi}\Delta\varphi,
 \end{equation}
 
-where \(d\) is the displacement of the moving mirror on the translation stage, \(\lambda\) is the laser wavelength, and \(\Delta\varphi\) is the measured phase change \prismcite{32}.
+where \(d\) is the displacement of the moving mirror on the translation stage, \(\lambda\) is the laser wavelength, and \(\Delta\varphi\) is the measured phase change \prismcite{31}.
 
-Since the phase can be tracked continuously, quadrature homodyne interferometry can measure displacements much smaller than the laser wavelength \prismcite{33}. It also provides information about the direction of movement, making it possible to track the position reliably over long distances. For these reasons, a quadrature homodyne interferometer was chosen as an extension for the displacement measurement system developed in this thesis.
+Since the phase can be tracked continuously, quadrature homodyne interferometry can measure displacements much smaller than the laser wavelength \prismcite{32}. It also provides information about the direction of movement, making it possible to track the position reliably over long distances. For these reasons, a quadrature homodyne interferometer was chosen as an extension for the displacement measurement system developed in this thesis.
 
 To realize the expanded capabilities of quadrature homodyne interferometry compared to a conventional Michelson interferometer, additional optical elements are required. Specifically, polarization-controlling components are essential for generating the quadrature signals. These components and their operating principles are introduced in the following.
 
@@ -342,7 +342,7 @@ Specifically, a $\lambda/2$ wave plate, a $\lambda/4$ wave plate and a Wollaston
 
 \paragraph{Half-Wave Plate}
 
-A half-wave plate is a special type of wave retarder. In general, a wave retarder is a birefringent optical element with two principal axes, usually referred to as the fast and slow axes. Because the refractive indices along these axes are different, the two orthogonal polarization components of a beam propagate with different phase velocities. As a result, a phase delay is introduced between the two components \prismcite{34}.
+A half-wave plate is a special type of wave retarder. In general, a wave retarder is a birefringent optical element with two principal axes, usually referred to as the fast and slow axes. Because the refractive indices along these axes are different, the two orthogonal polarization components of a beam propagate with different phase velocities. As a result, a phase delay is introduced between the two components \prismcite{33}.
 
 For a half-wave plate, this phase retardance is
 
@@ -350,7 +350,7 @@ For a half-wave plate, this phase retardance is
     \Gamma = \pi .
 \end{equation}
 
-This means that one polarization component is delayed by half an optical period with respect to the orthogonal component. For linearly polarized input light, the output remains linearly polarized, but the plane of polarization is rotated. If the incident polarization forms an angle \(\theta\) with one of the principal axes of the half-wave plate, the polarization direction after the plate is rotated by \(2\theta\) with respect to the incident direction \prismcite{35}.
+This means that one polarization component is delayed by half an optical period with respect to the orthogonal component. For linearly polarized input light, the output remains linearly polarized, but the plane of polarization is rotated. If the incident polarization forms an angle \(\theta\) with one of the principal axes of the half-wave plate, the polarization direction after the plate is rotated by \(2\theta\) with respect to the incident direction \prismcite{34}.
 
 In the quadrature homodyne interferometer, this property is used to adjust the polarization angle of the laser beam. By rotating the polarization to \(45^\circ\) with respect to the axes of a polarizing beam splitter, the optical power can be divided into two equal polarization components. 
 \paragraph{Quarter-Wave Plate}
@@ -364,18 +364,18 @@ Consequently, one polarization component is delayed by one quarter of an optical
 
 \paragraph{Wollaston Prism}
 
-A Wollaston prism, shown in Figure~\ref{fig:wollaston_prism}, is a polarization beam splitter that separates an incoming beam into two linearly polarized output beams. It consists of two birefringent wedge prisms, commonly made from a material such as calcite. Although a magnesium fluoride (\(\mathrm{MgF}_2\)) Wollaston prism was used in this work due to availability, this choice of material does not affect the operating principle. The two wedges are joined together with their optical axes oriented perpendicular to each other \prismcite{36}. Because birefringent materials exhibit different refractive indices for different polarization directions, the ordinary and extraordinary polarization components experience different refraction angles. The behavior, that different refractive indices are refracted differently originates from Snell's law,
+A Wollaston prism, shown in Figure~\ref{fig:wollaston_prism}, is a polarization beam splitter that separates an incoming beam into two linearly polarized output beams. It consists of two birefringent wedge prisms, commonly made from a material such as calcite. Although a magnesium fluoride (\(\mathrm{MgF}_2\)) Wollaston prism was used in this work due to availability, this choice of material does not affect the operating principle. The two wedges are joined together with their optical axes oriented perpendicular to each other \prismcite{35}. Because birefringent materials exhibit different refractive indices for different polarization directions, the ordinary and extraordinary polarization components experience different refraction angles. The behavior, that different refractive indices are refracted differently originates from Snell's law,
 \begin{equation}
     n_1 \sin\theta_1 = n_2 \sin\theta_2,
 \end{equation}
-where \(n_1\) and \(n_2\) are the refractive indices of the first and second medium, respectively, and \(\theta_1\) and \(\theta_2\) are the angles of incidence and refraction, measured with respect to the surface normal \prismcite{37}.
+where \(n_1\) and \(n_2\) are the refractive indices of the first and second medium, respectively, and \(\theta_1\) and \(\theta_2\) are the angles of incidence and refraction, measured with respect to the surface normal \prismcite{36}.
 
 In the first prism, one polarization component propagates as the ordinary ray while the orthogonal component propagates as the extraordinary ray. In the second prism, whose optical axis is rotated by \(90^\circ\), these roles are interchanged. As a result, the two polarization components are refracted in opposite directions at the internal interface and leave the prism as two spatially separated beams. The use of two prisms increases the angular separation and makes the two output beams easier to use experimentally.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.55\linewidth]{figures/wollaston.png}
-    \caption{Schematic representation of a Wollaston prism. The two cemented birefringent prisms have perpendicular optical axes, causing orthogonally polarized components to be refracted in different directions. Obtained from \prismcite{36}.}
+    \caption{Schematic representation of a Wollaston prism. The two cemented birefringent prisms have perpendicular optical axes, causing orthogonally polarized components to be refracted in different directions. Obtained from \prismcite{35}.}
     \label{fig:wollaston_prism}
 \end{figure}
 
@@ -389,7 +389,7 @@ Traditionally, helium-neon (HeNe) lasers are widely used in interferometry \pris
 In this work, several HeNe lasers and one semiconductor diode laser were investigated as potential laser sources for the interferometric calibration system. The following sections summarize the operating principles and characteristic properties of both laser types.
 \subsection{Helium-Neon (HeNe) Lasers}
 
-The Helium-Neon (HeNe) laser is one of the most widely used gas lasers in optics and interferometry. HeNe lasers emit coherent red light at a wavelength of \(632.8\,\mathrm{nm}\) and operate in continuous-wave mode \prismcite{15}. The emitted laser beam exhibits a narrow spectral bandwidth, high temporal and spatial coherence as well as low beam divergence. \prismcite{15}. High coherence is essential because stable interference fringes can only be observed if the phase relation between the interfering waves remains constant over time \prismcite{17}. Due to these properties, HeNe lasers are particularly suitable for interferometric measurements and precision optical experiments \prismcite{15}.
+The Helium-Neon (HeNe) laser is one of the most widely used gas lasers in optics and interferometry. HeNe lasers emit coherent red light at a wavelength of \(632.8\,\mathrm{nm}\) and operate in continuous-wave mode \prismcite{15}. The emitted laser beam exhibits a narrow spectral bandwidth, high temporal and spatial coherence as well as low beam divergence. \prismcite{16}. High coherence is essential because stable interference fringes can only be observed if the phase relation between the interfering waves remains constant over time \prismcite{17}. Due to these properties, HeNe lasers are particularly suitable for interferometric measurements and precision optical experiments \prismcite{16}.
 
 
 
