@@ -178,7 +178,20 @@
 %%% ============== %%% 
 
 %%% BIBLATEX SETUP %%%
-\newcommand{\prismcite}[1]{[#1]}
+\makeatletter
+\newif\if@prismcitefirst
+\DeclareRobustCommand{\prismcite}[1]{[%
+  \@prismcitefirsttrue
+  \@for\nextgp:=#1\do{%
+    \if@prismcitefirst
+      \@prismcitefirstfalse
+    \else
+      , %
+    \fi
+    \ref{cite:\nextgp}%
+  }%
+]}
+\makeatother
 % source: https://tex.stackexchange.com/questions/534565/apply-empty-style-to-the-entire-bibliography
 \renewcommand{\bibsetup}{\thispagestyle{empty}}
 \makeatletter
