@@ -291,7 +291,7 @@ After a successful detection, a short cooldown period is applied before another 
 
 The control of the translation stage as well as distance calculation and all further calculations are identical to the Camera Software mentioned above.
 
-Finally, the software provides the possibility to record all measured data. The recorded dataset contains the relative measurement time, the raw voltage, the baseline-corrected voltage, the accumulated fringe count, the calculated optical distance and the current position of the translation stage. After the measurement, these data can be exported as a CSV file for further analysis. A visualization of the User Interface can be seen in this figure ...
+Finally, the software provides the possibility to record all measured data. The recorded dataset contains the relative measurement time, the raw voltage, the baseline-corrected voltage, the accumulated fringe count, the calculated optical distance and the current position of the translation stage. After the measurement, these data can be exported as a CSV file for further analysis. A visualization of the user interface is shown in Figure~\ref{fig:single_diode_software_gui}.
 
 \section{Software for Homodyne Quadrature Detection}
 
@@ -348,7 +348,7 @@ The fringe count is then detected using only one of the photodiodes and the exac
 The phase difference between the two normalized signals is calculated directly using the four-quadrant arctangent,
 
 \begin{equation}
-\phi=\operatorname{atan2}
+\varphi=\operatorname{atan2}
 \left(
 S_{2,\mathrm{norm}},
 S_{1,\mathrm{norm}}
@@ -358,11 +358,11 @@ S_{1,\mathrm{norm}}
 Since the arctangent only returns phase values between \(-\pi\) and \(\pi\), discontinuities occur whenever the phase crosses this interval. To obtain a continuous phase signal, phase unwrapping is necessary. The phase difference between two consecutive measurements is first wrapped back into the interval \([-\pi,\pi]\) and then accumulated,
 
 \begin{equation}
-\phi_{\mathrm{unwrap}}
+\varphi_{\mathrm{unwrap}}
 =
-\phi_{\mathrm{unwrap}}
+\varphi_{\mathrm{unwrap}}
 +
-\Delta\phi.
+\Delta\varphi.
 \end{equation}
 
 The accumulated phase is converted into the corresponding fringe position by
@@ -370,7 +370,7 @@ The accumulated phase is converted into the corresponding fringe position by
 \begin{equation}
 N_{\mathrm{fringe}}
 =
-\frac{\phi_{\mathrm{unwrap}}}{2\pi}.
+\frac{\varphi_{\mathrm{unwrap}}}{2\pi}.
 \end{equation}
 
 Finally, the optical displacement is calculated using the fringe distance,
