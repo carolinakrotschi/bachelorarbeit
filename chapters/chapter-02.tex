@@ -123,27 +123,27 @@ where \(w_0\) is the beam waist radius, \(z_0\) the waist position and \(z_R\) t
 For an ideal Gaussian beam, the intensity distribution is given by
 
 \begin{equation}
-I(r)=I_0\exp\left(-\frac{2r^2}{W^2}\right),
+I(r)=I_0\exp\left(-\frac{2r^2}{w^2}\right),
 \end{equation}
 
-where \(I(r)\) is the optical intensity at the radial distance \(r\) from the beam center, \(I_0\) is the peak intensity at the beam center \((r=0)\), and \(W\) is the beam radius, defined as the radius at which the intensity has decreased to \(1/e^2\) of its maximum value \prismcite{12}.
+where \(I(r)\) is the optical intensity at the radial distance \(r\) from the beam center, \(I_0\) is the peak intensity at the beam center \((r=0)\), and \(w\) is the beam radius, defined as the radius at which the intensity has decreased to \(1/e^2\) of its maximum value \prismcite{12}.
 
 Anthony Siegman generalized this formalism for arbitrary real laser beams by introducing beam widths based on the statistical standard deviation of the intensity distribution:
 
 \begin{equation}
-W_x(z)=2\sigma_x(z),
+w_x(z)=2\sigma_x(z),
 \end{equation}
 
-where \(W_x(z)\) is the beam radius in the \(x\)-direction at the propagation distance \(z\), and \(\sigma_x(z)\) is the standard deviation of the intensity distribution in the \(x\)-direction \prismcite{12}.
+where \(w_x(z)\) is the beam radius in the \(x\)-direction at the propagation distance \(z\), and \(\sigma_x(z)\) is the standard deviation of the intensity distribution in the \(x\)-direction \prismcite{12}.
 
 The propagation of real, non-ideal laser beams can then be described by the \(M^2\)-formalism:
 
 \begin{equation}
-W_x^2(z)=W_{0x}^2+
-M_x^4\left(\frac{\lambda}{\pi W_{0x}}\right)^2(z-z_{0x})^2,
+w_x^2(z)=w_{0x}^2+
+M_x^4\left(\frac{\lambda}{\pi w_{0x}}\right)^2(z-z_{0x})^2,
 \end{equation}
 
-where \(W_x(z)\) is the beam radius in the \(x\)-direction at the propagation distance \(z\), \(W_{0x}\) is the minimum beam radius (beam waist) in the \(x\)-direction, \(M_x^2\) is the beam quality factor in the \(x\)-direction, \(z_{0x}\) is the position of the beam waist, and \(\lambda\) is the wavelength of the laser beam \prismcite{12}.
+where \(w_x(z)\) is the beam radius in the \(x\)-direction at the propagation distance \(z\), \(w_{0x}\) is the minimum beam radius (beam waist) in the \(x\)-direction, \(M_x^2\) is the beam quality factor in the \(x\)-direction, \(z_{0x}\) is the position of the beam waist, and \(\lambda\) is the wavelength of the laser beam \prismcite{12}.
 
 The beam quality factor satisfies
 
@@ -156,10 +156,10 @@ where \(M^2=1\) corresponds to an ideal diffraction-limited Gaussian beam, while
 The divergence of a real beam is therefore given by
 
 \begin{equation}
-\theta = M^2\frac{\lambda}{\pi W_0},
+\theta = M^2\frac{\lambda}{\pi w_0},
 \end{equation}
 
-where \(\theta\) is the far-field divergence half-angle, \(M^2\) is the beam quality factor, \(W_0\) is the beam waist radius, and \(\lambda\) is the wavelength of the laser beam. This equation shows that beams with \(M^2>1\) diverge more strongly than an ideal Gaussian beam \prismcite{12}.
+where \(\theta\) is the far-field divergence half-angle, \(M^2\) is the beam quality factor, \(w_0\) is the beam waist radius, and \(\lambda\) is the wavelength of the laser beam. This equation shows that beams with \(M^2>1\) diverge more strongly than an ideal Gaussian beam \prismcite{12}.
 
 The beam quality factor \(M^2\) therefore provides an important criterion for evaluating laser sources. 
 
@@ -268,7 +268,7 @@ A conventional Michelson interferometer like explained above is a homodyne inter
 While a conventional homodyne interferometer can measure displacement with high precision, it cannot determine the direction of motion. This limitation arises because the detected intensity depends on the cosine of the phase difference, which is an even function:
 
 \begin{equation}
-\cos(\Delta\phi)=\cos(-\Delta\phi).
+\cos(\Delta\varphi)=\cos(-\Delta\varphi).
 \end{equation}
 
 As a result, identical intensity values are obtained for positive and negative displacements, making it impossible to distinguish whether the translation stage is moving forward or backward \prismcite{30}.
@@ -276,13 +276,13 @@ As a result, identical intensity values are obtained for positive and negative d
 To overcome this ambiguity, quadrature homodyne interferometry has been developed. In this technique, two interference signals with a phase offset of $90^\circ$ are generated. The resulting detector signals can be written as
 
 \begin{equation}
-S_1=A\cos(\Delta\phi),
+S_1=A\cos(\Delta\varphi),
 \end{equation}
 
 and
 
 \begin{equation}
-S_2=A\sin(\Delta\phi),
+S_2=A\sin(\Delta\varphi),
 \end{equation}
 
 where $A$ is the signal amplitude. These signals are commonly referred to as quadrature signals because they are shifted by one quarter of a period relative to each other \prismcite{30}.
@@ -299,7 +299,7 @@ In the setup (as shown in Figure~\ref{fig:homodyne_setup}), the simultaneous det
 The two signals can be represented as coordinates in the $(S_1,S_2)$ plane (as shown in Figure~\ref{fig:counting_homodyne}). Ideally, the resulting trajectory forms a circle as the stage moves. The phase can then be reconstructed continuously using
 
 \begin{equation}
-\Delta\phi=\operatorname{atan2}(S_2,S_1),
+\Delta\varphi=\operatorname{atan2}(S_2,S_1),
 \end{equation}
 
 which uniquely determines the phase over the full $2\pi$ range \prismcite{31}.
@@ -314,13 +314,13 @@ which uniquely determines the phase over the full $2\pi$ range \prismcite{31}.
 Unlike a conventional homodyne interferometer, the direction of motion can now be determined from the temporal evolution of the reconstructed phase. As the translation stage moves in the positive direction, the phase increases continuously. Conversely, motion in the opposite direction causes the phase to decrease \prismcite{30}. The direction is therefore obtained from the sign of the phase change between consecutive measurements,
 
 \begin{equation}
-\frac{d\Delta\phi}{dt}>0
+\frac{d\Delta\varphi}{dt}>0
 \quad \Rightarrow \quad
 \text{forward motion},
 \end{equation}
 
 \begin{equation}
-\frac{d\Delta\phi}{dt}<0
+\frac{d\Delta\varphi}{dt}<0
 \quad \Rightarrow \quad
 \text{backward motion}.
 \end{equation}
@@ -330,10 +330,10 @@ This can also be interpreted geometrically. In the $(S_1,S_2)$ plane, positive m
 The displacement is obtained from the measured phase according to
 
 \begin{equation}
-d= \frac{\lambda}{4\pi}\Delta\phi,
+d= \frac{\lambda}{4\pi}\Delta\varphi,
 \end{equation}
 
-where \(d\) is the displacement of the moving mirror on the translation stage, \(\lambda\) is the laser wavelength, and \(\Delta\phi\) is the measured phase change \prismcite{32}.
+where \(d\) is the displacement of the moving mirror on the translation stage, \(\lambda\) is the laser wavelength, and \(\Delta\varphi\) is the measured phase change \prismcite{32}.
 
 Since the phase can be tracked continuously, quadrature homodyne interferometry can measure displacements much smaller than the laser wavelength \prismcite{33}. It also provides information about the direction of movement, making it possible to track the position reliably over long distances. For these reasons, a quadrature homodyne interferometer was chosen as an extension for the displacement measurement system developed in this thesis.
 
@@ -342,7 +342,7 @@ To realize the expanded capabilities of quadrature homodyne interferometry compa
 \subsubsection{Optical Components for Quadrature Homodyne Interferometry}
 
 For completeness, the most important optical components used in the quadrature homodyne interferometer are briefly introduced.
-Specifically, a $\lambda/2$ wave plate, a $\lambda/4$ wave plate, a Wollaston prism, and a wire-grid polarizer. The basic functions of a conventional beam splitter and a polarizing beam splitter are only mentioned briefly here. A conventional beam splitter divides the incoming beam into two beams of similar intensity, while a polarizing beam splitter separates the beam into two orthogonal polarization components. The Wollaston prism is discussed in more detail because it is a special type of polarizing beam splitter.
+Specifically, a $\lambda/2$ wave plate, a $\lambda/4$ wave plate and a Wollaston prism. The basic functions of a conventional beam splitter and a polarizing beam splitter are only mentioned briefly here. A conventional beam splitter divides the incoming beam into two beams of similar intensity, while a polarizing beam splitter separates the beam into two orthogonal polarization components. The Wollaston prism is discussed in more detail because it is a special type of polarizing beam splitter.
 
 \paragraph{Half-Wave Plate}
 
@@ -383,19 +383,6 @@ In the first prism, one polarization component propagates as the ordinary ray wh
     \label{fig:wollaston_prism}
 \end{figure}
 
-\paragraph{Wire-Grid Polarizer}
-
-A wire-grid polarizer (shown in Figure~\ref{fig:wire_grid_polarizer}) consists of many parallel conducting wires. When light reaches the grid, its electric field can be decomposed into a component parallel to the wires and a component perpendicular to the wires \prismcite{38}. The electric field component parallel to the wires drives the free electrons in the metal along the wire direction. The resulting oscillating currents reradiate electromagnetic waves, leading mainly to reflection and absorption of this polarization component.
-
-For the electric field component perpendicular to the wires, the electrons cannot move efficiently across the gaps between neighboring wires. Consequently, only a weak current is induced, and this polarization component is transmitted much more efficiently. The wire-grid polarizer therefore transmits light polarized perpendicular to the wires while suppressing the parallel component.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.55\linewidth]{figures/wiregrid.png}
-    \caption{Principle of a wire-grid polarizer. The electric field component parallel to the conducting wires is mostly reflected or absorbed, while the perpendicular component is transmitted. Obtained from \prismcite{38}.}
-    \label{fig:wire_grid_polarizer}
-\end{figure}
-
 
 After introducing the different interferometric configurations, the next step is to consider how such a setup can be realized experimentally. One of the most important components is the laser source. Since different laser technologies have different advantages and limitations, the following section introduces two laser types that are especially relevant for interferometric applications.
 
@@ -406,7 +393,7 @@ Traditionally, helium-neon (HeNe) lasers are widely used in interferometry \pris
 In this work, several HeNe lasers and one semiconductor diode laser were investigated as potential laser sources for the interferometric calibration system. The following sections summarize the operating principles and characteristic properties of both laser types.
 \subsection{Helium-Neon (HeNe) Lasers}
 
-The Helium-Neon (HeNe) laser is one of the most widely used gas lasers in optics and interferometry. HeNe lasers emit coherent red light at a wavelength of \(632.8\,\mathrm{nm}\) and operate in continuous-wave mode \prismcite{15}. The emitted laser beam exhibits a narrow spectral bandwidth, high temporal and spatial coherence as well as low beam divergence. \prismcite{16}. High coherence is essential because stable interference fringes can only be observed if the phase relation between the interfering waves remains constant over time \prismcite{17}. Due to these properties, HeNe lasers are particularly suitable for interferometric measurements and precision optical experiments \prismcite{16}.
+The Helium-Neon (HeNe) laser is one of the most widely used gas lasers in optics and interferometry. HeNe lasers emit coherent red light at a wavelength of \(632.8\,\mathrm{nm}\) and operate in continuous-wave mode \prismcite{15}. The emitted laser beam exhibits a narrow spectral bandwidth, high temporal and spatial coherence as well as low beam divergence. \prismcite{15}. High coherence is essential because stable interference fringes can only be observed if the phase relation between the interfering waves remains constant over time \prismcite{17}. Due to these properties, HeNe lasers are particularly suitable for interferometric measurements and precision optical experiments \prismcite{15}.
 
 
 

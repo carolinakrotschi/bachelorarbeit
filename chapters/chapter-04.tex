@@ -73,7 +73,7 @@ I_{\max}-I_{\min}
 \right).
 \]
 
-These parameters were determined experimentally and were found to provide reliable fringe detection under the investigated operating conditions. A smaller offset was used for the dark threshold than for the bright threshold \(0.125\) compared with \(0.40\), because bright fringes were reached more clearly than dark fringes in the recorded camera signal.
+These parameters were determined experimentally and were found to provide reliable fringe detection under the investigated operating conditions. The dark threshold was set close to \(I_{\min}\), resulting in a conservative classification that accepts only clearly defined intensity minima. The bright threshold was set farther below \(I_{\max}\), because the measured bright fringes did not always reach the absolute maximum intensity. 
 
 After calibration, the stage automatically returns to its reference position and all measurement counters are reset. To prevent accidental user interaction during this transition, all control buttons remain disabled for an additional two seconds.
 
@@ -341,7 +341,7 @@ S_{2,\mathrm{norm}}
 
 This normalization compensates for different signal amplitudes and voltage offsets of both photodiodes and approximately maps the measured data onto a unit circle in the Lissajous representation.
 
-The fringe count is then detected using only one of the photodiode and the exact same fringe counter as in the Single Photo diode software.
+The fringe count is then detected using only one of the photodiodes and the exact same fringe counter as in the Single Photo diode software.
 
 \subsection{Phase Determination}
 
