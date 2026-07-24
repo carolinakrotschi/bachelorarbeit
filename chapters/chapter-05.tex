@@ -51,7 +51,7 @@ As an alternative to image-based fringe detection, an electronic detection appro
 
 \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.55\linewidth]{figures/electronicsignalschematic.png}
+        \includegraphics[width=0.75\linewidth]{figures/electronicsignalschematic.png}
     \caption{Electronic signal detection using a photodiode, schematic representation. BS denotes the beam splitter, M1 the reference mirror, M2 the measurement mirror, TS the translation stage, and PD the photodiode.}
     \label{fig:photodiode_setup}
 \end{figure}
@@ -71,7 +71,7 @@ With these modifications, fringes could also be detected from the electronic pho
 
 \section{Comparison of Detection Methods}
 
-The two investigated detection approaches showed a different performance. The camera provided stable and clearly visible interference fringes with a high signal-to-noise ratio, enabling robust image-based evaluation. Furthermore, the recorded fringe patterns offered direct visual feedback during alignment and facilitated the development of automated analysis software.
+The two investigated detection approaches showed a different performance levels. The camera provided stable and clearly visible interference fringes with a high signal-to-noise ratio, enabling robust image-based evaluation. Furthermore, the recorded fringe patterns offered direct visual feedback during alignment and facilitated the development of automated analysis software.
 
 The photodiode-based detection approach also produced a usable periodic signal. One advantage of this method is that the sinusoidal intensity variation can be monitored directly in the voltage signal. This makes missed fringes or undetected peaks easier to identify than in camera-based detection, where fringes may become difficult to distinguish during rapid motion. However, the photodiode signal was not consistently stable. In some intervals, the sinusoidal modulation flattened or shifted, and the number of visible fringes varied over comparable time periods. These observations indicate that the signal-to-noise ratio and baseline stability were not sufficient for the highest measurement accuracy.
 
@@ -94,7 +94,7 @@ A more noticeable difference can be seen in Figure~\ref{fig:camera_diode_side_by
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/camera_diode_side_by_side.png}
+    \includegraphics[width=1.0\linewidth]{figures/camera_diode_side_by_side.png}
     \caption{Side-by-side comparison of camera-based and photodiode-based fringe detection. The camera-based evaluation is less affected by environmental noise, while the photodiode signal exhibits stronger fluctuations. The camera-based measurement was performed at a stage velocity of \(0.0004\,\mathrm{mm\,s^{-1}}\), whereas the photodiode-based measurement was performed at \(0.0006\,\mathrm{mm\,s^{-1}}\). For clearer visualization, both datasets are shown only up to \(1200\,\mathrm{s}\), although the camera-based measurement contained additional data. This time interval was sufficient for comparing the signal stability of both detection methods.}
     \label{fig:camera_diode_side_by_side}
 \end{figure}
@@ -120,7 +120,7 @@ As discussed in the introduction, the interferometer was not only intended to im
         \centering
         \includegraphics[width=\linewidth]{figures/homodyneschematic.png}
     \end{minipage}
-    \caption{Laboratory setup and schematic representation of the quadrature homodyne interferometer. The setup extends the Michelson interferometer with polarization optics in order to generate two phase-shifted photodiode signals for direction-sensitive displacement detection. M1--M4 denote mirrors, PD denotes the photodiode, TS denotes the translation stage, and PBS denotes the polarizing beam splitter.}
+    \caption{Laboratory setup and schematic representation of the quadrature homodyne interferometer. The setup extends the Michelson interferometer with polarization optics in order to generate two phase-shifted photodiode signals for direction-sensitive displacement detection. M1--M4 denote mirrors, PD denotes the photodiode, TS denotes the translation stage, and PBS denotes the polarizing beam splitter. Although the polarizers at the end are included in the schematic for completeness, they are omitted in the actual setup photograph, as the Wollaston prism theoretically acts as a perfect polarizing beam splitter.}
     \label{fig:quadrature_homodyne_setup}
 \end{figure}
 
@@ -137,18 +137,9 @@ The polarization states in the quadrature homodyne interferometer are illustrate
     \label{fig:homodyne_polarization}
 \end{figure}
 
-The two phase-shifted photodiode signals were successfully detected, as shown in Figure~\ref{fig:homodyne_first_results}. The direction of motion can be determined from the Lissajous plot shown on the right-hand side of the figure. The two quadrature signals form a circular trajectory, and the direction in which this trajectory is moving indicates the direction of motion.
+The two phase-shifted photodiode signals were successfully detected. The direction of motion can be determined from the Lissajous plot shown on the right-hand side of the graphical user interface (see Figure~\ref{fig:homodyne_software_gui} in Chapter~\ref{chap:software_analysis}). The two quadrature signals form a circular trajectory, and the direction in which this trajectory is moving indicates the direction of motion.
 
-The measurement demonstrated the functionality of the quadrature homodyne extension. 
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/homodynefirstresult.jpg}
-    \caption{Measurement result obtained with the quadrature homodyne interferometer. The two photodiode signals were detected successfully, and the Lissajous representation was used to evaluate the direction-dependent phase relation.}
-    \label{fig:homodyne_first_results}
-\end{figure}
-
-A more detailed evaluation of the recorded quadrature signals is shown in Figure~\ref{fig:sin_cos_fit}. One photodiode signal was fitted with a sine function, while the second signal was fitted with a cosine function. The fitted curves show a phase shift of \(90^\circ\), as indicated by the dashed vertical reference line passing through corresponding points of the two fitted signals. This confirms that the optical setup generated the required quadrature phase relation for direction-sensitive displacement detection.
+A detailed evaluation of the recorded quadrature signals is shown in Figure~\ref{fig:sin_cos_fit}. One photodiode signal was fitted with a sine function, while the second signal was fitted with a cosine function. The fitted curves show a phase shift of \(90^\circ\), as indicated by the dashed vertical reference line passing through corresponding points of the two fitted signals. This confirms that the optical setup generated the required quadrature phase relation for direction-sensitive displacement detection.
 
 \begin{figure}[htbp]
     \centering
