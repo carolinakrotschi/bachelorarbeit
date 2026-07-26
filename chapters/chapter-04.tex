@@ -233,11 +233,9 @@ d_{\mathrm{interferometer}},
 
 where \(d_{\mathrm{stage}}\) is the displacement reported by the stage controller and \(d_{\mathrm{interferometer}}\) is the displacement determined from the fringe count.
 
-The resulting deviation provides a direct measure of the positioning error and enables a quantitative evaluation of the accuracy and repeatability of the translation stage.
-
 \section{Software for Fringe Detection with the Photodiode}
 
-The software developed for the photodiode-based fringe detection follows the same general structure as the camera-based implementation described in the previous section. The graphical user interface is again implemented using the \texttt{CustomTkinter} library, while the hardware communication is separated into dedicated handler classes. Instead of processing camera images, the software now uses a \texttt{SingleDiodeHandler} class, which establishes the connection to the National Instruments data acquisition (NI-DAQ) device and continuously reads the voltage signal of the photodiode. The main application, which coordinates the user interface, the measurement process and the control of the electronic translation stage.
+The software developed for the photodiode-based fringe detection follows the same general structure as the camera-based implementation described in the previous section. The graphical user interface is again implemented using the \texttt{CustomTkinter} library, while the hardware communication is separated into dedicated handler classes. Instead of processing camera images, the software now uses a \texttt{SingleDiodeHandler} class, which establishes the connection to the National Instruments data acquisition (NI-DAQ) device and continuously reads the voltage signal of the photodiode, and the main application, which coordinates the user interface, the measurement process and the control of the electronic translation stage.
 
 As with the camera software, the measurement process is executed in a separate thread. This allows the voltage acquisition, translation stage movement and graphical user interface to run simultaneously without freezing the application. During the measurement, the user interface continuously updates the measured voltage, the accumulated fringe count, the calculated optical path difference, the corresponding time delay and the current position of the translation stage.
 
@@ -267,7 +265,7 @@ V_\mathrm{clean}=V_\mathrm{raw}-V_\mathrm{baseline},
 
 which removes the constant voltage offset and improves the signal-to-noise ratio.
 
-The software also includes the option to use a reference photodiode. In this configuration, a small fraction of the laser beam is split off directly behind the laser output and detected by a second photodiode. The reference signal can then be used for normalization in order to compensate for slow fluctuations of the laser intensity. 
+Another version of the software also includes the option to use a reference photodiode. In this configuration, a small fraction of the laser beam is split off directly behind the laser output and detected by a second photodiode. The reference signal can then be used for normalization in order to compensate for slow fluctuations of the laser intensity. 
 
 \subsection{Automatic Calibration}
 
@@ -281,9 +279,9 @@ Based on the measured fringe amplitude, the software automatically calculates th
 
 \subsection{Fringe Detection}
 
-The implemented fringe detection algorithm is based on the measured fringe amplitude rather than on directly detecting local minima and maxima. This approach proved to be considerably more robust for the photodiode measurements, whose signal characteristics changed over time.
+The implemented fringe detection algorithm is based on the measured fringe amplitude rather than on directly detecting local minima and maxima. 
 
-Before evaluating the signal, every newly acquired voltage sample is smoothed using a short moving average filter. The detection algorithm then operates as a state machine consisting of a dark state and a bright state.
+The detection algorithm then operates as a state machine consisting of a dark state and a bright state.
 
 Initially, the algorithm waits until the signal reaches the dark region of an interference fringe. Once this condition is fulfilled, the signal is monitored until it rises by a predefined fraction of the calibrated fringe amplitude. When this threshold is exceeded for several consecutive samples, one fringe is counted.
 
@@ -353,7 +351,7 @@ S_{1,\mathrm{norm}}
 \right).
 \end{equation}
 
-\prismcite{39}. Since the arctangent only returns phase values between \(-\pi\) and \(\pi\), discontinuities occur whenever the phase crosses this interval. To obtain a continuous phase signal, phase unwrapping is necessary. The phase difference between two consecutive measurements is first wrapped back into the interval \([-\pi,\pi]\) and then accumulated,
+\prismcite{17}. Since the arctangent only returns phase values between \(-\pi\) and \(\pi\), discontinuities occur whenever the phase crosses this interval. To obtain a continuous phase signal, phase unwrapping is necessary. The phase difference between two consecutive measurements is first wrapped back into the interval \([-\pi,\pi]\) and then accumulated,
 
 \begin{equation}
 \varphi_{\mathrm{unwrap}}
@@ -388,15 +386,16 @@ where \(\lambda\) is the laser wavelength.
 
 An advantage of the quadrature method is that the direction of movement can be determined directly from the sign of the phase change described in the previous section. To reduce the influence of noise, the software evaluates the average phase change over several samples instead of using a single value. If this average value is larger than the switching threshold of \(0.003\,\mathrm{rad}\), the motion is classified as forward. If it is smaller than \(-0.003\,\mathrm{rad}\), the motion is classified as backward. For smaller absolute phase changes, the stage is treated as stationary.
 
-A lower release threshold of \(0.001\,\mathrm{rad}\) prevents short noise spikes from causing rapid switching between forward, backward, and stationary states.
+A lower release threshold of \(0.001\,\mathrm{rad}\) prevents short noise spikes from causing rapid switching between forward, backward, and stationary states. These values were also determined experimentally.
 
 \subsection{Lissajous Representation}
 
-To visualize the measurement, the normalized photodiode signals are displayed as a Lissajous figure. Ideally, both signals form a circular trajectory, where the angular position corresponds directly to the optical phase \prismcite{31}. During operation, the current measurement point, the recent trajectory and the detected direction of rotation are updated continuously.
+To visualize the measurement, the normalized photodiode signals are displayed as a Lissajous figure. Ideally, both signals form a circular trajectory, where the angular position corresponds directly to the optical phase \prismcite{18}. During operation, the current measurement point, the recent trajectory and the detected direction of rotation are updated continuously.
 
 Since the raw photodiode signals are affected by electrical noise, the displayed circle is additionally smoothed. For this purpose, the phase of the last measurement points is approximated by a linear fit. The fitted phase is then transformed back into sine and cosine functions, resulting in a smooth circular trajectory. 
 
 \subsection{Position Lock}
+\label{sec:position_lock}
 
 One limitation of the translation stage used in this work was that it did not remain perfectly stationary after reaching the commanded position. Instead, small mechanical drifts around the target position were observed. To compensate for these drifts, an active position lock was implemented.
 
@@ -408,7 +407,7 @@ During operation, the software continuously evaluates both the single-photodiode
 
 The required correction distance is calculated from the number of detected fringes and the corresponding fringe spacing. The translation stage is then commanded to move by the same distance in the opposite direction, thereby compensating the measured drift and returning the optical path length towards the reference position.
 
-In practice, however, the achievable locking performance is limited by the mechanical behaviour of the translation stage. During every correction movement, additional interference fringes are generated because the stage itself is moving. These fringes are detected by the software and may trigger further correction movements before the previous correction has completely settled. Consequently, successive corrections are initiated although the original disturbance has already been compensated. With the positioning accuracy and response time of the available translation stage, this behaviour could not be completely eliminated. Therefore, the implemented position lock demonstrates the general feedback concept, but its long-term stability remains limited by the mechanical characteristics of the stage.
+In practice, the achievable locking performance is limited by the mechanical behaviour of the translation stage. During every correction movement, additional interference fringes are generated because the stage itself is moving. These fringes are detected by the software and may trigger further correction movements before the previous correction has completely settled. Consequently, successive corrections are initiated although the original disturbance has already been compensated. With the positioning accuracy and response time of the available translation stage, this behaviour could not be completely eliminated. Therefore, the implemented position lock demonstrates the general feedback concept, but its long-term stability remains limited by the mechanical characteristics of the stage.
 
 \subsection{Software Optimizations}
 

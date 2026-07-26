@@ -1,10 +1,10 @@
 \chapter{Development of the Interferometer}
 \thispagestyle{empty}
-With the software implementation completed, all components required for the interferometric measurements were available. This chapter presents the complete experimental setup used throughout this work.
+With the software implementation completed, all components required for the interferometric measurements were available. This chapter presents the complete experimental setup used in this work.
 
 \section{Experimental Setup}
 
- The interferometer was initially assembled on an optical table using a manual translation stage in order to validate the measurement principle under controlled conditions. After successful verification of the setup, the manual stage was replaced by the Physik Instrumente (PI) L-836.511212 automated translation stage steered by the PI 663.12 controller for subsequent investigations.
+The interferometer was initially assembled on an optical table using a manual translation stage in order to validate the measurement principle. After successful verification of the setup, the manual stage was replaced by the Physik Instrumente (PI) L-836.511212 automated translation stage steered by the PI 663.12 controller for subsequent investigations.
 
 A key objective during the development process was the identification of a suitable method for detecting the interference signal. Two different approaches were therefore investigated and compared. In the first approach, the interference pattern was recorded using a camera and evaluated through fringe detection. In the second approach, the interference signal was converted into an electrical signal using a photodiode. The performance of both methods was assessed with respect to signal quality and suitability for automated displacement measurements.
 
@@ -28,7 +28,7 @@ The complete experimental setup, including the automated translation stage, is s
     \label{fig:thorcam_fringes}
 \end{figure}
 
-The stability and visibility of the observed interference pattern indicated that image-based fringe detection was a promising approach. Consequently, the development of dedicated software for automated fringe detection and fringe counting was considered feasible.
+The stability and visibility of the observed interference pattern indicated that image-based fringe detection was a promising approach. 
 
 \subsection{Comparison with the Best HeNe Laser Source}
 
@@ -51,7 +51,7 @@ As an alternative to image-based fringe detection, an electronic detection appro
 
 \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.75\linewidth]{figures/electronicsignalschematic.png}
+        \includegraphics[width=0.85\linewidth]{figures/electronicsignalschematic.png}
     \caption{Electronic signal detection using a photodiode, schematic representation. BS denotes the beam splitter, M1 the reference mirror, M2 the measurement mirror, TS the translation stage, and PD the photodiode.}
     \label{fig:photodiode_setup}
 \end{figure}
@@ -71,7 +71,7 @@ With these modifications, fringes could also be detected from the electronic pho
 
 \section{Comparison of Detection Methods}
 
-The two investigated detection approaches showed a different performance levels. The camera provided stable and clearly visible interference fringes with a high signal-to-noise ratio, enabling robust image-based evaluation. Furthermore, the recorded fringe patterns offered direct visual feedback during alignment and facilitated the development of automated analysis software.
+The two investigated detection approaches showed different performance levels. The camera provided stable and clearly visible interference fringes with a high signal-to-noise ratio, enabling robust image-based evaluation. Furthermore, the recorded fringe patterns offered direct visual feedback during alignment and facilitated the development of automated analysis software.
 
 The photodiode-based detection approach also produced a usable periodic signal. One advantage of this method is that the sinusoidal intensity variation can be monitored directly in the voltage signal. This makes missed fringes or undetected peaks easier to identify than in camera-based detection, where fringes may become difficult to distinguish during rapid motion. However, the photodiode signal was not consistently stable. In some intervals, the sinusoidal modulation flattened or shifted, and the number of visible fringes varied over comparable time periods. These observations indicate that the signal-to-noise ratio and baseline stability were not sufficient for the highest measurement accuracy.
 
@@ -99,7 +99,7 @@ A more noticeable difference can be seen in Figure~\ref{fig:camera_diode_side_by
     \label{fig:camera_diode_side_by_side}
 \end{figure}
 
-During the experimental work, additional limitations of the diode laser became apparent. It showed noticeable variations between repeated measurements. In addition to differences between individual measurements, the signal quality also varied from one day to another.
+During the experimental work, additional limitations of the experimental setup became apparent. The signal quality showed noticeable variations between repeated measurements. In addition to differences between individual measurements, the signal quality also varied from one day to another.
 
 Another observation was that the interference signal occasionally required a short settling time before stable fringes appeared. In these cases, the translation stage had already started moving, while the interference fringes became visible only after a short delay. The reason for this behaviour could not be identified within the scope of this thesis.
 
@@ -108,7 +108,7 @@ Overall, the system did not provide the same signal quality under all measuremen
 
 
 \section{Quadrature Homodyne Interferometer}
-As discussed in the introduction, the interferometer was not only intended to improve the accuracy of the translation stage displacement measurement. A second important requirement was the detection of the direction of motion, since small forward and backward movements of the stage in a stationary position must be compensated for in order to enable active correction. For this reason, the Michelson interferometer was extended with polarization optics to form a quadrature homodyne interferometer. The corresponding laboratory setup and schematic representation are shown in Figure~\ref{fig:quadrature_homodyne_setup}.
+The interferometer was not only intended to improve the accuracy of the translation stage displacement measurement. A second important requirement was the detection of the direction of motion, since small forward and backward movements of the stage in a stationary position must be compensated for in order to enable active correction. For this reason, the Michelson interferometer was extended with polarization optics to form a quadrature homodyne interferometer. The corresponding laboratory setup and schematic representation are shown in Figure~\ref{fig:quadrature_homodyne_setup}.
 
 \begin{figure}[htbp]
     \centering
@@ -126,14 +126,14 @@ As discussed in the introduction, the interferometer was not only intended to im
 
 In this configuration, the laser beam first passes through a half-wave plate, which rotates the linear polarization to \(45^\circ\). The beam then enters a polarizing beam splitter, where it is ideally divided into equal s- and p-polarized components. These two components form the two interferometer arms and are reflected by mirrors. Due to the temporary unavailability of the PI translation stage, these measurements were also performed using the Thorlabs LTS300C/M translation stage.
 
-After propagating through the interferometer arms, the two beams are recombined and pass through a second half-wave plate. This wave plate rotates the polarization by \(45^\circ\), so that both beams contain equal amounts of s- and p-polarized light. The beams then pass through a quarter-wave plate, which introduces a phase shift of \(\pi/2\) between the two polarization components and converts the light into circularly polarized light. This allows the Wollaston prism to generate two interference signals that are \(90^\circ\) out of phase, enabling quadrature detection. The Thorlabs MgF2 (10mm thickness) Wollaston prism acts as a polarization beam splitter and generates two output beams with orthogonal polarization components. These beams are redirected by two mirrors and then pass through polarizers to clean up the respective polarization states before detection with a photodiode.
+After propagating through the interferometer arms, the two beams are recombined and pass through a second half-wave plate. This wave plate rotates the polarization by \(45^\circ\), so that both beams contain equal amounts of s- and p-polarized light. The beams then pass through a quarter-wave plate, which introduces a phase shift of \(\pi/2\) between the two polarization components and converts the light into circularly polarized light. This allows the Wollaston prism to generate two interference signals that are \(90^\circ\) out of phase, enabling quadrature detection. The Thorlabs \(\mathrm{MgF}_2\) (\(10\,\mathrm{mm}\) thickness) Wollaston prism acts as a polarization beam splitter and generates two output beams with orthogonal polarization components. These beams are redirected by two mirrors and then pass through polarizers to clean up the respective polarization states before detection with a photodiode.
 
 The polarization states in the quadrature homodyne interferometer are illustrated schematically in Figure~\ref{fig:homodyne_polarization}. This representation clarifies how the polarization optics generate two detection signals with an approximate phase shift of \(90^\circ\).
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/homodynepol.png}
-    \caption{Schematic representation of the polarization states in the quadrature homodyne interferometer. M1--M4 denote mirrors, PD denotes the photodiode, TS the translation stage, and PBS the polarizing beam splitter.}
+    \caption{Schematic representation of the polarization states in the quadrature homodyne interferometer. M1--M4 denote mirrors, PD denotes the photodiode, TS the translation stage, and PBS the polarizing beam splitter. The rotation direction introduced by the \(\lambda/4\) plate was chosen arbitrarily.}
     \label{fig:homodyne_polarization}
 \end{figure}
 

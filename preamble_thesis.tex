@@ -178,6 +178,11 @@
 %%% ============== %%% 
 
 %%% BIBLATEX SETUP %%%
+% Suppress the bib "language" field (e.g. "en"/"de") from being printed in the bibliography:
+% every entry driver in standard.bbx calls \printlist{language} directly (not via a
+% bibmacro), and \DeclareListFormat{language}{...} controls how that list is rendered,
+% so overriding it here to produce no output is the correct hook.
+\DeclareListFormat{language}{}
 \makeatletter
 \newif\if@prismcitefirst
 \DeclareRobustCommand{\prismcite}[1]{[%
