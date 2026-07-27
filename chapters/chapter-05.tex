@@ -4,7 +4,7 @@ With the software implementation completed, all components required for the inte
 
 \section{Experimental Setup}
 
-The interferometer was initially assembled on an optical table using a manual translation stage in order to validate the measurement principle. After successful verification of the setup, the manual stage was replaced by the Physik Instrumente (PI) L-836.511212 automated translation stage steered by the PI 663.12 controller for subsequent investigations.
+The interferometer was initially assembled on an optical table using a manual translation stage in order to validate the measurement principle. After successful verification of the setup, the manual stage was replaced by the Thorlabs LTS300C/M automated translation stage for subsequent investigations.
 
 A key objective during the development process was the identification of a suitable method for detecting the interference signal. Two different approaches were therefore investigated and compared. In the first approach, the interference pattern was recorded using a camera and evaluated through fringe detection. In the second approach, the interference signal was converted into an electrical signal using a photodiode. The performance of both methods was assessed with respect to signal quality and suitability for automated displacement measurements.
 
@@ -58,7 +58,7 @@ As an alternative to image-based fringe detection, an electronic detection appro
 
 In principle, displacement of the translation stage should produce periodic intensity variations in the interference signal, with destructive interference corresponding to intensity minima and constructive interference corresponding to intensity maxima.  
 
-During these measurements, the PI translation stage described at the beginning of this chapter was temporarily unavailable. Therefore, a Thorlabs LTS300C/M translation stage was used instead. The control software was adapted accordingly to drive the Thorlabs stage. Since only the stage actuation was changed while the interferometric detection principle remained the same, the results can still be compared with the camera-based diode laser measurements.
+The measurements were performed using the Thorlabs LTS300C/M automated translation stage. Since the interferometric detection principle remained consistent, the results can be directly compared with the camera-based diode laser measurements.
        
 With these modifications, fringes could also be detected from the electronic photodiode signal. The corresponding result is shown in Figure~\ref{fig:electronic_signal_detection}.
 
@@ -124,7 +124,7 @@ The interferometer was not only intended to improve the accuracy of the translat
     \label{fig:quadrature_homodyne_setup}
 \end{figure}
 
-In this configuration, the laser beam first passes through a half-wave plate, which rotates the linear polarization to \(45^\circ\). The beam then enters a polarizing beam splitter, where it is ideally divided into equal s- and p-polarized components. These two components form the two interferometer arms and are reflected by mirrors. Due to the temporary unavailability of the PI translation stage, these measurements were also performed using the Thorlabs LTS300C/M translation stage.
+In this configuration, the laser beam first passes through a half-wave plate, which rotates the linear polarization to \(45^\circ\). The beam then enters a polarizing beam splitter, where it is ideally divided into equal s- and p-polarized components. These two components form the two interferometer arms and are reflected by mirrors.
 
 After propagating through the interferometer arms, the two beams are recombined and pass through a second half-wave plate. This wave plate rotates the polarization by \(45^\circ\), so that both beams contain equal amounts of s- and p-polarized light. The beams then pass through a quarter-wave plate, which introduces a phase shift of \(\pi/2\) between the two polarization components and converts the light into circularly polarized light. This allows the Wollaston prism to generate two interference signals that are \(90^\circ\) out of phase, enabling quadrature detection. The Thorlabs \(\mathrm{MgF}_2\) (\(10\,\mathrm{mm}\) thickness) Wollaston prism acts as a polarization beam splitter and generates two output beams with orthogonal polarization components. These beams are redirected by two mirrors and then pass through polarizers to clean up the respective polarization states before detection with a photodiode.
 
@@ -139,12 +139,12 @@ The polarization states in the quadrature homodyne interferometer are illustrate
 
 The two phase-shifted photodiode signals were successfully detected. The direction of motion can be determined from the Lissajous plot shown on the right-hand side of the graphical user interface (see Figure~\ref{fig:homodyne_software_gui} in Chapter~\ref{chap:software_analysis}). The two quadrature signals form a circular trajectory, and the direction in which this trajectory is moving indicates the direction of motion.
 
-A detailed evaluation of the recorded quadrature signals is shown in Figure~\ref{fig:sin_cos_fit}. One photodiode signal was fitted with a sine function, while the second signal was fitted with a cosine function. The fitted curves show a phase shift of \(90^\circ\), as indicated by the dashed vertical reference line passing through corresponding points of the two fitted signals. This confirms that the optical setup generated the required quadrature phase relation for direction-sensitive displacement detection.
+A detailed evaluation of the recorded quadrature signals is shown in Figure~\ref{fig:sin_cos_fit}.  As indicated by the vertical reference line passing through corresponding points of the two fitted signals, the curves exhibit a phase shift of \(90^\circ\). This confirms that the optical setup generated the required quadrature phase relation for direction-sensitive displacement detection.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/sin_cos_fit.png}
-    \caption{Detailed evaluation of the quadrature homodyne signals. The fitted sine and cosine curves show a phase shift of \(90^\circ\), confirming the quadrature relation between the two photodiode signals.}
+    \caption{Detailed evaluation of the quadrature homodyne signals. The graph visualizes the sine and cosine photodiode signals used to determine the direction of motion. A minor linear trend, likely originating from the photodiode, was subtracted. The fitted curves show a phase shift of \(90^\circ\), confirming the quadrature relation between the two signals.}
     \label{fig:sin_cos_fit}
 \end{figure}
 
