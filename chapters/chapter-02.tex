@@ -2,7 +2,7 @@
 \label{chap:theoretical_background}
 \thispagestyle{empty}
 
-Before discussing the experimental work, the theoretical foundations relevant to this thesis are introduced. The chapter begins with Gaussian beam optics and the beam quality factor \(M^2\), since these concepts are important for characterizing the laser sources used in the interferometer. Afterwards, the basic principle of interferometry is explained using a Michelson interferometer, which forms the basis of the measurement setup. This is then extended to quadrature homodyne interferometry, because this method also allows the direction of motion to be determined. The following sections introduce the main components of the experiment: suitable laser sources, the operating principle and limitations of the electronic translation stage.
+Before discussing the experimental work, the theoretical foundations relevant to this thesis are introduced. The chapter begins with Gaussian beam optics and the beam quality factor \(M^2\), since these concepts are important for characterizing the laser sources used in the interferometer. Afterwards, the basic principle of interferometry is explained using a Michelson interferometer, which forms the basis of the measurement setup. This is then extended to quadrature homodyne interferometry, because this method allows the direction of motion to be determined. The following sections introduce the main components of the experiment: suitable laser sources, the operating principle and limitations of the electronic translation stage.
 \section{Gaussian Beam Optics}
 
 One objective of this thesis was the characterization of different laser sources. In many optical applications, laser beams are assumed to be Gaussian, with a beam profile that follows the Gaussian distribution. For this reason, Gaussian beam optics forms the basis for one important characterization parameter, the beam quality factor \(M^2\)\prismcite{6}.  
@@ -57,7 +57,7 @@ Using the complex beam parameter
 q(z)=z+iz_R,
 \end{equation}
 
-where \(z_R\) is the Rayleigh length, the Gaussian beam solution can be written as
+where \(z_R\) is the Rayleigh range (defined in Section~\ref{sec:beam_waist_divergence}), the Gaussian beam solution can be written as
 
 \begin{equation}
 \tilde{u}(\rho,z)=\frac{A_1}{q(z)}
@@ -74,12 +74,12 @@ The complete complex electric field amplitude of a Gaussian beam is then given b
 \exp\left[-ikz-ik\frac{\rho^2}{2R(z)}+i\zeta(z)\right],
 \end{equation}
 
-where \(A_0\) is the field amplitude at the beam waist, \(w_0\) is the beam waist radius, \(w(z)\) is the beam radius at the position \(z\), \(R(z)\) is the radius of curvature of the wavefront, and \(\zeta(z)\) is \boxed{\zeta(z)=\arctan\!\left(\frac{z}{z_R}\right)} \prismcite{8}.
+where \(A_0\) is the field amplitude at the beam waist, \(w_0\) is the beam waist radius, \(w(z)\) is the beam radius at the position \(z\), \(R(z)\) is the radius of curvature of the wavefront, and \(\zeta(z)=\arctan\!\left(\frac{z}{z_R}\right)\) \prismcite{8}.
 
 Having established the field distribution of a Gaussian beam, the next step is to examine the parameters that characterize its propagation. In particular, the beam waist and beam divergence provide a quantitative description of the beam size and its evolution along the propagation direction.
 
 
-\subsection{Beam Waist and Divergence}
+\subsection{Beam Waist and Divergence}\label{sec:beam_waist_divergence}
 
 The beam radius \(w(z)\) reaches its minimum value at the beam waist, which is located in the transverse plane defined by \(z=0\). The minimum beam radius at this position is denoted by \(w_0\) \prismcite{9}.
 
@@ -90,7 +90,7 @@ w(z)=w_0\left[1+\left(\frac{z}{z_R}\right)^2\right]^{1/2}
 \label{eq:beam_radius_propagation}
 \end{equation}
 
-where \(z_R\) is the Rayleigh range, defined as the distance from the beam waist at which the beam radius has increased by a factor of \(\sqrt{2}\) \prismcite{8}.
+where \(z_R\) is the Rayleigh length, defined as the distance from the beam waist at which the beam radius has increased by a factor of \(\sqrt{2}\) \prismcite{8}.
 
 Far from the beam waist, the beam radius increases approximately linearly with the propagation distance, forming a divergence cone. The half-angle beam divergence is given by
 
@@ -123,7 +123,7 @@ I(r)=I_0\exp\left(-\frac{2r^2}{w^2}\right),
 
 where \(I(r)\) is the optical intensity at the radial distance \(r\) from the beam center, \(I_0\) is the peak intensity at the beam center \((r=0)\), and \(w\) is the beam radius, defined as the radius at which the intensity has decreased to \(1/e^2\) of its maximum value \prismcite{11}.
 
-Anthony Siegman generalized this formalism for arbitrary real laser beams by introducing beam widths based on the statistical standard deviation of the intensity distribution:
+This formalism was then generalized by Anthony Siegman for arbitrary real laser beams by introducing beam widths based on the statistical standard deviation of the intensity distribution:
 
 \begin{equation}
 w_x(z)=2\sigma_x(z),
@@ -165,7 +165,7 @@ Interferometry is a general optical measurement technique that exploits the inte
 
 \subsection{Michelson Interferometer}
 
-A Michelson interferometer consists of a beam splitter and two mirrors. A coherent light beam enters the interferometer and a beam splitter divides it into two beams of identical intensity that travel along different optical paths. After being reflected by the mirrors, the beams recombine \prismcite{13}. The setup is shown in Figure~\ref{fig:michelsoninterferometer}.
+A Michelson interferometer consists of a 50/50 beam splitter and two mirrors. A coherent light beam enters the interferometer and a beam splitter divides it into two beams of identical intensity that travel along different optical paths. After being reflected by the mirrors, the beams recombine \prismcite{13}. The setup is shown in Figure~\ref{fig:michelsoninterferometer}.
 
 \begin{figure}[htbp]
     \centering
@@ -336,14 +336,13 @@ d= \frac{\lambda}{4\pi}\Delta\varphi.
 
 \prismcite{18}.
 
-Since the phase can be tracked continuously, quadrature homodyne interferometry can measure displacements which are much smaller than the laser wavelength \prismcite{19}. It also provides information about the direction of movement, making it possible to track the position reliably over long distances. For these reasons, a quadrature homodyne interferometer was chosen as an extension for the displacement measurement system developed in this thesis.
+Since the phase can be tracked continuously, quadrature homodyne interferometry can measure displacements which are much smaller than the laser wavelength \prismcite{19}. It also provides information about the direction of movement. For these reasons, a quadrature homodyne interferometer was chosen as an extension for the displacement measurement system developed in this thesis.
 
 To realize the expanded capabilities of quadrature homodyne interferometry compared to a conventional Michelson interferometer, additional optical elements are required. Specifically, polarization-controlling components are essential for generating the quadrature signals. These components and their operating principles are introduced in the following.
 
 \subsubsection{Optical Components for Quadrature Homodyne Interferometry}
 
-For completeness, the most important optical components used in the quadrature homodyne interferometer are briefly introduced.
-Specifically, a $\lambda/2$ wave plate, a $\lambda/4$ wave plate and a Wollaston prism are the main components. 
+For completeness, the main optical components used in the quadrature homodyne interferometer are introduced in the following sections. The \(\lambda/2\) wave plate, \(\lambda/4\) wave plate, and Wollaston prism form the core components and are discussed in detail, while the polarizing beam splitter is covered briefly at the end.
 
 \paragraph{Half-Wave Plate}
 
@@ -355,7 +354,7 @@ For a half-wave plate, this phase retardance is
     \Gamma = \pi .
 \end{equation}
 
-This means that one polarization component is delayed by half an optical period with respect to the orthogonal component. For linearly polarized input light, the output remains linearly polarized, but the plane of polarization is rotated. If the incident polarization forms an angle \(\theta\) with one of the principal axes of the half-wave plate, the polarization direction after the plate is rotated by \(2\theta\) with respect to the incident direction \prismcite{21}.
+Consequently, one polarization component is delayed by half an optical period with respect to the orthogonal component. For linearly polarized input light, the output remains linearly polarized, but the plane of polarization is rotated. If the incident polarization forms an angle \(\theta\) with one of the principal axes of the half-wave plate, the polarization direction after the plate is rotated by \(2\theta\) with respect to the incident direction \prismcite{21}.
 
 In the quadrature homodyne interferometer, this property is used to adjust the polarization angle of the laser beam. By rotating the polarization by \(45^\circ\) with respect to the axes of a polarizing beam splitter, the optical power can be divided into two equal polarization components. 
 \paragraph{Quarter-Wave Plate}
@@ -385,8 +384,9 @@ In the first prism, one polarization component propagates as the ordinary ray wh
     \label{fig:wollaston_prism}
 \end{figure}
 
-\paragraph{Other components}
-Other components include a conventional 50/50 beam splitter and a polarizing beam splitter, whose basic functions are only mentioned briefly here. A conventional 50/50 beam splitter divides the incoming beam into two beams of equal intensity, while a polarizing beam splitter separates the beam into two orthogonal polarization components. 
+\paragraph{Polarizing Beam Splitter}
+
+A polarizing beam splitter is also used in the setup to separate an incoming beam into two orthogonal linear polarization components. 
 
 After introducing the different interferometric configurations, the next step is to consider how such a setup can be realized experimentally. One of the most important components is the laser source. Since different laser technologies have different advantages and limitations, the following section introduces two laser types that are especially relevant for interferometric applications.
 
