@@ -49,7 +49,7 @@ During this period, the translation stage performs a predefined forward and back
 
 The dark threshold is then calculated as
 
-\[
+\begin{equation}
 I_{\mathrm{dark}}
 =
 I_{\min}
@@ -58,11 +58,11 @@ I_{\min}
 \left(
 I_{\max}-I_{\min}
 \right),
-\]
+\end{equation}
 
 while the bright threshold is determined by
 
-\[
+\begin{equation}
 I_{\mathrm{bright}}
 =
 I_{\max}
@@ -71,7 +71,7 @@ I_{\max}
 \left(
 I_{\max}-I_{\min}
 \right).
-\]
+\end{equation}
 
 These parameters were determined experimentally and were found to provide reliable fringe detection under the investigated operating conditions. The dark threshold was set close to \(I_{\min}\), resulting in a conservative classification that accepts only clearly defined intensity minima. The bright threshold was set farther below \(I_{\max}\), because the measured bright fringes did not always reach the absolute maximum intensity. 
 
@@ -95,19 +95,19 @@ Camera noise and short-term intensity fluctuations may cause individual frames t
 
 The filtered intensity is given by
 
-\[
+\begin{equation}
 I_{\mathrm{filtered}}
 =
 \frac{1}{N}
 \sum_{i=1}^{N}
 I_i,
-\]
+\end{equation}
 
 where \(N\) is the number of averaged measurements and \(I_i\) represents the intensity of the \(i\)-th measurement. The filter window size is set to
 
-\[
+\begin{equation}
 N = 5.
-\]
+\end{equation}
 
 This smoothing operation significantly improves detection stability without noticeably affecting response time.
 
@@ -127,11 +127,11 @@ To further improve robustness, a state transition is accepted only after multipl
 
 The values
 
-\[
+\begin{equation}
 N_{\mathrm{dark}} = 3
 \quad\text{and}\quad
 N_{\mathrm{bright}} = 3
-\]
+\end{equation}
 
 were found experimentally to provide reliable operation.
 
@@ -177,43 +177,43 @@ The fringe count obtained from the interference signal is converted into a physi
 
 For a Michelson interferometer, the optical path difference changes by twice the mechanical displacement of the translation stage. Since the implemented algorithm counts transitions between dark and bright fringes, one counted fringe step corresponds to a stage displacement of
 
-\[
+\begin{equation}
 d_{\mathrm{fringe}}
 =
 \frac{\lambda}{2}.
-\]
+\end{equation}
 
 Using the measured wavelength of the selected laser source,
 
-\[
+\begin{equation}
 \lambda = 787.3\,\mathrm{nm},
-\]
+\end{equation}
 
 the corresponding displacement per counted fringe step is
 
-\[
+\begin{equation}
 d_{\mathrm{fringe}}
 =
 0.394\,\mu\mathrm{m}.
-\]
+\end{equation}
 
 The total interferometrically measured displacement is calculated from the accumulated fringe count according to
 
-\[
+\begin{equation}
 d
 =
 N_{\mathrm{fringe}}
 \cdot
 d_{\mathrm{fringe}},
-\]
+\end{equation}
 
 where \(N_{\mathrm{fringe}}\) denotes the accumulated fringe count. In addition, the software converts the measured displacement into the corresponding optical time delay:
 
-\[
+\begin{equation}
 \Delta t
 =
 \frac{2d}{c},
-\]
+\end{equation}
 
 where \(c\) is the speed of light.
 
@@ -223,13 +223,13 @@ A key objective of the developed software is to compare the displacement reporte
 
 For each movement, the software continuously calculates the displacement deviation
 
-\[
+\begin{equation}
 \Delta d
 =
 d_{\mathrm{stage}}
 -
 d_{\mathrm{interferometer}},
-\]
+\end{equation}
 
 where \(d_{\mathrm{stage}}\) is the displacement reported by the stage controller and \(d_{\mathrm{interferometer}}\) is the displacement determined from the fringe count.
 

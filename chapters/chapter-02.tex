@@ -215,17 +215,17 @@ the final expression for the detected time-averaged intensity becomes
 \end{equation}
 with the phase difference
 \begin{equation}
-\Delta\varphi = \varphi_1-\varphi_2=\frac{2\pi}{\lambda}d,
+\Delta\varphi = \varphi_1-\varphi_2=\frac{2\pi}{\lambda}\Delta s,
 \label{eq:phase_difference}
 \end{equation}
-where \(d\) is the optical path difference between the two interferometer arms \prismcite{2}.
+where \(\Delta s\) is the optical path difference between the two interferometer arms \prismcite{2}.
 
 
 
 \subsubsection{Interference}
 As already noted in Eq.~\eqref{eq:phase_difference}, the optical path difference determines the phase difference between the two interfering waves. Interference describes the superposition of coherent electromagnetic waves. Constructive interference occurs when the optical path difference is an integer multiple of the wavelength,
 \begin{equation}
-d = m\lambda,
+\Delta s = m\lambda,
 \end{equation}
 which corresponds to a phase difference of
 \begin{equation}
@@ -233,7 +233,7 @@ which corresponds to a phase difference of
 \end{equation}
 where \(m\in\mathbb{Z}\). Conversely, destructive interference occurs for optical path differences of
 \begin{equation}
-d = \left(m+\frac{1}{2}\right)\lambda,
+\Delta s = \left(m+\frac{1}{2}\right)\lambda,
 \end{equation}
 corresponding to a phase difference of
 \begin{equation}
@@ -250,11 +250,11 @@ The Michelson interferometer was chosen because it is a simple configuration for
 In the Michelson interferometer, the movement of one mirror changes the optical path difference between the two interferometer arms. Whenever the optical path difference changes by one wavelength (\(\lambda\)), one complete interference fringe passes the detector. Since the light in that arm travels the added distance twice, once towards the mirror and once back, a mechanical mirror displacement \(d\) produces an optical path difference of
 
 \begin{equation}
-d = 2d_{\mathrm{mirror}}.
+\Delta s = 2d.
 \label{eq:path_difference_displacement}
 \end{equation}
 
-For a Michelson interferometer the stage displacement \(d\) of the moving mirror is related to the number of counted fringes \(N\) by
+After \(N\) counted fringes, the optical path difference has therefore changed by \(\Delta s = N\lambda\). Combining this with Eq.~\eqref{eq:path_difference_displacement}, the stage displacement \(d\) of the moving mirror is related to the number of counted fringes \(N\) by
 
 \begin{equation}
 d = \frac{N\lambda}{2}
